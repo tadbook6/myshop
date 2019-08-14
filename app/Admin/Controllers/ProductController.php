@@ -6,6 +6,7 @@ use App\Product;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
+use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 
 class ProductController extends AdminController
@@ -69,12 +70,32 @@ class ProductController extends AdminController
     {
         $form = new Form(new Product);
 
-        $form->text('title', __('Title'));
-        $form->textarea('description', __('Description'));
-        $form->image('image', __('Image'));
-        $form->switch('on_sale', __('On sale'))->default(1);
-        $form->number('price', __('Price'));
+        $form->text('title', __('Title'))->rules('required');
+        $form->textarea('description', __('Description'))->rules('required');
+        $form->image('image', __('Image'))->rules('required');
+        $states = [
+            'on'  => ['value' => 1, 'text' => '是', 'color' => 'success'],
+            'off' => ['value' => 0, 'text' => '否', 'color' => 'danger'],
+        ];
+        $form->switch('on_sale', __('On sale'))->states($states)->default(1);
+        $form->number('price', __('Price'))->rules('required|integer|min:0');
 
         return $form;
+    }
+
+    public function index(Content $content)
+    {
+        return $content
+            ->header('商品管理')
+            ->description('管理所有賣場商品')
+            ->body($this->grid());
+    }
+
+    public function create(Content $content)
+    {
+        return $content
+            ->header('新增商品')
+            ->description('新增賣場商品')
+            ->body($this->form());
     }
 }

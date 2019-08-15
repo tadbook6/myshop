@@ -59,6 +59,6 @@
 @section('my_menu')
     <li class="nav-item">
         @parent
-        <a class="nav-link" href="/home">回控制台</a>
+        <a class="nav-link" href="/cart">我的購物車</a>
     </li>
 @endsection

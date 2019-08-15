@@ -14,12 +14,12 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">數量</span>
                         </div>
-                        <input type="text" class="form-control input-sm" value="1">
+                        <input type="text" name="amount" class="form-control input-sm" value="1">
                         <div class="input-group-append">
                             <span class="input-group-text">件</span>
                         </div>
                         <div class="input-group-append">
-                            <button class="btn btn-primary btn-add-to-cart">加入購物車</button>
+                            <button class="btn btn-primary btn-add-to-cart" data-id="{{ $product->id }}">加入購物車</button>
                         </div>
                     </div>
                     {!! $product->description !!}
@@ -30,9 +30,17 @@
 
 @endsection
 
+@section('scriptsAfterJs')
+    <script>
+        $(document).ready(function () {
+                @include('product.add2cart')
+            });
+    </script>
+@endsection
+
 @section('my_menu')
     <li class="nav-item">
         @parent
-        <a class="nav-link" href="/home">回控制台</a>
+        <a class="nav-link" href="/cart">我的購物車</a>
     </li>
 @endsection

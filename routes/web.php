@@ -10,14 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
-
-Route::get('/', function () {
-    $name = 'tad3';
-    $say  = '嗨！';
-    return view('welcome', compact('name', 'say'));
-
-});
+Route::pattern('product', '[0-9]+');
 
 Auth::routes();
 
+Route::get('/', 'ProductController@index')->name('index');
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/product', 'ProductController@index')->name('product.index');
+Route::get('/product/{product}', 'ProductController@show')->name('product.show');

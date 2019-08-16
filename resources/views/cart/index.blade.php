@@ -9,7 +9,7 @@
         <th nowrap class="text-right">小計</th>
         <th>功能</th>
     </tr>
-    @forelse($carts as $cart)
+    @forelse($user->carts as $cart)
         <tr>
             <td>
                 <a target="_blank" href="/product/{{ $cart->product_id }}">

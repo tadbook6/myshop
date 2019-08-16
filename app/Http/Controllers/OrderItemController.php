@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Cart;
+use App\OrderItem;
 use Illuminate\Http\Request;
 
-class CartController extends Controller
+class OrderItemController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $user = $request->user();
-        return view('cart.index', compact('user'));
+        //
     }
 
     /**
@@ -36,21 +35,16 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $cart             = new Cart;
-        $cart->user_id    = $request->user()->id;
-        $cart->product_id = $request->product_id;
-        $cart->amount     = $request->amount;
-        $cart->save();
-        return [];
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Cart  $cart
+     * @param  \App\OrderItem  $orderItem
      * @return \Illuminate\Http\Response
      */
-    public function show(Cart $cart)
+    public function show(OrderItem $orderItem)
     {
         //
     }
@@ -58,10 +52,10 @@ class CartController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Cart  $cart
+     * @param  \App\OrderItem  $orderItem
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cart $cart)
+    public function edit(OrderItem $orderItem)
     {
         //
     }
@@ -70,10 +64,10 @@ class CartController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Cart  $cart
+     * @param  \App\OrderItem  $orderItem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cart $cart)
+    public function update(Request $request, OrderItem $orderItem)
     {
         //
     }
@@ -81,12 +75,11 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Cart  $cart
+     * @param  \App\OrderItem  $orderItem
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $request)
+    public function destroy(OrderItem $orderItem)
     {
-        $request->user()->carts()->where('id', $id)->delete();
-        return [];
+        //
     }
 }

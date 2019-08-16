@@ -37,8 +37,10 @@
                     </td>
                     <td class="text-center">             
                         @if($cart->product->on_sale)
-                            <input type="number" min="1" class="form-control text-center amount" name="amount[{{ $cart->product_id }}]"
+                            <input type="number" min="1" class="form-control text-center amount" name="amount[{{ $cart->id }}]"
                             value="{{ $cart->amount }}" data-cartid="{{ $cart->id }}">
+                            <input type="hidden" name="product[{{ $cart->id }}]"
+                            value="{{ $cart->product_id }}">
                         @else
                             <div class="warning">该商品已下架</div>
                         @endif
